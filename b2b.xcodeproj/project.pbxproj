@@ -13,6 +13,7 @@
 		C9E3D7D61F7B79B100B3C0F3 /* b2b.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9E3D7D41F7B79B100B3C0F3 /* b2b.xcdatamodeld */; };
 		C9E3D7D81F7B79B100B3C0F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9E3D7D71F7B79B100B3C0F3 /* Assets.xcassets */; };
 		C9E3D7DB1F7B79B100B3C0F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9E3D7D91F7B79B100B3C0F3 /* LaunchScreen.storyboard */; };
+		C9E3D7E31F7B9D5500B3C0F3 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E3D7E21F7B9D5500B3C0F3 /* SearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C9E3D7D71F7B79B100B3C0F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9E3D7DA1F7B79B100B3C0F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9E3D7DC1F7B79B100B3C0F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9E3D7E21F7B9D5500B3C0F3 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				C9E3D7CD1F7B79B100B3C0F3 /* AppDelegate.swift */,
 				C9E3D7CF1F7B79B100B3C0F3 /* SearchViewController.swift */,
+				C9E3D7E21F7B9D5500B3C0F3 /* SearchResult.swift */,
 				C9E3D7D11F7B79B100B3C0F3 /* Main.storyboard */,
 				C9E3D7D71F7B79B100B3C0F3 /* Assets.xcassets */,
 				C9E3D7D91F7B79B100B3C0F3 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 			files = (
 				C9E3D7D01F7B79B100B3C0F3 /* SearchViewController.swift in Sources */,
 				C9E3D7CE1F7B79B100B3C0F3 /* AppDelegate.swift in Sources */,
+				C9E3D7E31F7B9D5500B3C0F3 /* SearchResult.swift in Sources */,
 				C9E3D7D61F7B79B100B3C0F3 /* b2b.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
