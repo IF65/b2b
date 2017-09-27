@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        customizeAppearance()
         return true
     }
 
@@ -88,6 +90,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
+    
+    // MARK: - Helper Methods
+    
+    func customizeAppearance() {
+        let barTintColor = UIColor(red: 246/255, green: 21/255, blue: 147/255, alpha: 1)
+        UISearchBar.appearance().barTintColor = barTintColor
+    }
+    
 }
 

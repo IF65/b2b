@@ -15,6 +15,11 @@ class SearchViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        
+        let cellNib = UINib(nibName: "SearchResultCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "SearchResultCell")
+        
+        searchBar.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,17 +63,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "SearchResultCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as! SearchResultCell
         
-        var cell:UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
-        
-        if cell == nil {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
-        }
-        
-        cell.textLabel!.text = searchResults[indexPath.row].codiceGcc
-        cell.detailTextLabel!.text = searchResults[indexPath.row].descrizione
-        
+        cell.codiceGcc.text = searchResults[indexPath.row].codiceGcc
+        cell.codiceSM.text = searchResults[indexPath.row].codiceSm
+        cell.descrizione.text = searchResults[indexPath.row].descrizione
+        cell.marchio.text = searchResults[indexPath.row].marchio
+        cell.modello.text = searchResults[indexPath.row].modello
         return cell
     }
     
