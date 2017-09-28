@@ -29,27 +29,55 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
+        // MARK:- Private Methods
+    func iTunesURL(searchText: String) -> URL {
+        let urlString = String(format:"http://10.11.14.78/copre/copre.php?functionName=tabulatoCopre2&ediel01=&ediel02=&ediel03=&ediel04=&marchio=&descrizione=%@&codiceArticolo=&barcode=&modello=", searchText)
+        let url = URL(string: urlString)
+        return url!
+    }
+    
+    func performStoreRequest(with url: URL) -> Data? {
+        do {
+            return try Data(contentsOf: url)
+        } catch {
+            print("Download error: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+    func parse(data: Data) -> ResultArray? {
+        do {
+            let decoder = JSONDecoder()
+            let result = try decoder.decode(ResultArray.self, from: data)
+            print(result.resultCount)
+            return result
+        } catch {
+            print("JSON Error \(error)")
+            return nil
+        }
+    }
 }
 
-var searchResults = [SearchResult]()
+var searchResults = ResultArray()
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        
-        searchResults = []
-        for _ in 0...2 {
-            let searchResult = SearchResult()
+        if !searchBar.text!.isEmpty {
             
-            searchResult.codiceGcc = "0205055161"
-            searchResult.codiceSm = "0427318"
-            searchResult.descrizione = "LAVATRICE CF 8KG 1200G A+++ DISP BIG"
-            searchResult.modello = "WAK24268IT"
-            searchResult.marchio = "BOSCH"
+            searchBar.resignFirstResponder()
             
-            searchResults.append(searchResult)
+            let url = iTunesURL(searchText: searchBar.text!)
+            print ("URL: '\(url)'")
+            
+            if let data = performStoreRequest(with: url) {
+                searchResults = parse(data: data)!
+                
+                //print ("Got results : '\(searchResults.results[0].descrizione)'")
+            }
+            
+            tableView.reloadData()
         }
-        tableView.reloadData()
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
@@ -59,17 +87,16 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.count
+        return searchResults.results.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as! SearchResultCell
         
-        cell.codiceGcc.text = searchResults[indexPath.row].codiceGcc
-        cell.codiceSM.text = searchResults[indexPath.row].codiceSm
-        cell.descrizione.text = searchResults[indexPath.row].descrizione
-        cell.marchio.text = searchResults[indexPath.row].marchio
-        cell.modello.text = searchResults[indexPath.row].modello
+        cell.codiceGcc.text = searchResults.results[indexPath.row].codice
+        cell.descrizione.text = searchResults.results[indexPath.row].descrizione
+        cell.marchio.text = searchResults.results[indexPath.row].marchioCopre
+        cell.modello.text = searchResults.results[indexPath.row].modello
         return cell
     }
     
@@ -77,4 +104,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+
+
+
 

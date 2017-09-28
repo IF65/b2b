@@ -22,7 +22,6 @@ class SearchResultCell: UITableViewCell {
     }
     
     @IBOutlet weak var codiceGcc: UILabel!
-    @IBOutlet weak var codiceSM: UILabel!
     @IBOutlet weak var descrizione: UILabel!
     @IBOutlet weak var marchio: UILabel!
     @IBOutlet weak var modello: UILabel!
