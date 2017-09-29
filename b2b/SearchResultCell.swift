@@ -21,11 +21,11 @@ class SearchResultCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBOutlet weak var codiceGcc: UILabel!
-    @IBOutlet weak var descrizione: UILabel!
-    @IBOutlet weak var marchio: UILabel!
-    @IBOutlet weak var modello: UILabel!
-    
-    
 
+    @IBOutlet weak var codiceArticoloGcc: UILabel!
+    @IBOutlet weak var descrizioneArticolo: UILabel!
+    @IBOutlet weak var modello: UILabel!
+    @IBOutlet weak var marchio: UILabel!
+    @IBOutlet weak var giacenza: UILabel!
+    
 }

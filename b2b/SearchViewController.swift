@@ -32,7 +32,7 @@ class SearchViewController: UIViewController {
     
         // MARK:- Private Methods
     func iTunesURL(searchText: String) -> URL {
-        let urlString = String(format:"http://10.11.14.78/copre/copre.php?functionName=tabulatoCopre2&ediel01=&ediel02=&ediel03=&ediel04=&marchio=&descrizione=%@&codiceArticolo=&barcode=&modello=", searchText)
+        let urlString = String(format:"http://10.11.14.78/copre/copre.php?functionName=tabulatoCopre2&ediel01=&ediel02=&ediel03=&ediel04=&marchio=&descrizione=LAVATR&codiceArticolo=&barcode=&modello=", searchText)
         let url = URL(string: urlString)
         return url!
     }
@@ -73,7 +73,7 @@ extension SearchViewController: UISearchBarDelegate {
             if let data = performStoreRequest(with: url) {
                 searchResults = parse(data: data)!
                 
-                //print ("Got results : '\(searchResults.results[0].descrizione)'")
+                print ("Got results : '\(searchResults.results[0].descrizione)'")
             }
             
             tableView.reloadData()
@@ -93,10 +93,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as! SearchResultCell
         
-        cell.codiceGcc.text = searchResults.results[indexPath.row].codice
-        cell.descrizione.text = searchResults.results[indexPath.row].descrizione
+        cell.codiceArticoloGcc.text = searchResults.results[indexPath.row].codice
+        cell.descrizioneArticolo.text = searchResults.results[indexPath.row].descrizione
         cell.marchio.text = searchResults.results[indexPath.row].marchioCopre
         cell.modello.text = searchResults.results[indexPath.row].modello
+        //cell.giacenza.text = searchResults.results[indexPath.row].giacenza
         return cell
     }
     

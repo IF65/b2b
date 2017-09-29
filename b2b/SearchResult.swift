@@ -5,18 +5,17 @@ class ResultArray:Codable {
     var results = [SearchResult]()
 }
 
-
 class SearchResult:Codable {
     var idTime = ""
     var codice = ""
     var modello = ""
     var descrizione = ""
-    var giacenza = ""
-    var inOrdine = ""
-    var prezzoAcquisto = ""
-    var prezzoRiordino = ""
-    var prezzoVendita = ""
-    var aliquotaIva = ""
+    var giacenza = 0
+    var inOrdine = 0
+    var prezzoAcquisto = 0.0
+    var prezzoRiordino = 0.0
+    var prezzoVendita = 0.0
+    var aliquotaIva = 0.0
     var novita = ""
     var eliminato = ""
     var esclusiva = ""
@@ -29,12 +28,12 @@ class SearchResult:Codable {
     var ediel03 = ""
     var ediel04 = ""
     var marchio = ""
-    var ricaricoPercentuale = ""
-    var doppioNetto = ""
-    var triploNetto = ""
-    var nettoNetto = ""
+    var ricaricoPercentuale = 0.0
+    var doppioNetto = 0.0
+    var triploNetto = 0.0
+    var nettoNetto = 0.0
     var ordinabile = ""
-    var canale = ""
-    var pndAC = ""
-    var pndAP = ""
+    var canale = 0
+    var pndAC = 0.0
+    var pndAP = 0.0
 }
