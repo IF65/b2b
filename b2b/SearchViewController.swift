@@ -32,7 +32,8 @@ class SearchViewController: UIViewController {
     
         // MARK:- Private Methods
     func iTunesURL(searchText: String) -> URL {
-        let urlString = String(format:"http://10.11.14.78/copre/copre.php?functionName=tabulatoCopre2&ediel01=&ediel02=&ediel03=&ediel04=&marchio=&descrizione=LAVATR&codiceArticolo=&barcode=&modello=", searchText)
+        let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        let urlString = String(format:"http://10.11.14.78/copre/copre.php?functionName=tabulatoCopre2&ediel01=&ediel02=&ediel03=&ediel04=&marchio=&descrizione=%@&codiceArticolo=&barcode=&modello=", encodedText)
         let url = URL(string: urlString)
         return url!
     }
@@ -95,9 +96,21 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.codiceArticoloGcc.text = searchResults.results[indexPath.row].codice
         cell.descrizioneArticolo.text = searchResults.results[indexPath.row].descrizione
-        cell.marchio.text = searchResults.results[indexPath.row].marchioCopre
         cell.modello.text = searchResults.results[indexPath.row].modello
-        //cell.giacenza.text = searchResults.results[indexPath.row].giacenza
+        cell.marchio.text = searchResults.results[indexPath.row].marchioCopre
+        cell.giacenza.text = String(searchResults.results[indexPath.row].giacenza)
+        
+        cell.codiceArticoloGcc.sizeToFit()
+        cell.xView.layer.borderWidth = 2
+        cell.xView.layer.backgroundColor = UIColor.white.cgColor
+        cell.xView.layer.borderColor = UIColor.black.withAlphaComponent(0.6).cgColor
+        
+        let darkGreen = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
+        if searchResults.results[indexPath.row].giacenza > 0 {
+            cell.giacenza.textColor = darkGreen
+        }
+        
+        
         return cell
     }
     

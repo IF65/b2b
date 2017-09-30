@@ -16,9 +16,9 @@ class SearchResult:Codable {
     var prezzoRiordino = 0.0
     var prezzoVendita = 0.0
     var aliquotaIva = 0.0
-    var novita = ""
-    var eliminato = ""
-    var esclusiva = ""
+    var novita = false
+    var eliminato = false
+    var esclusiva = false
     var barcode = ""
     var marchioCopre = ""
     var griglia = ""
@@ -32,7 +32,7 @@ class SearchResult:Codable {
     var doppioNetto = 0.0
     var triploNetto = 0.0
     var nettoNetto = 0.0
-    var ordinabile = ""
+    var ordinabile = false
     var canale = 0
     var pndAC = 0.0
     var pndAP = 0.0

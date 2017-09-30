@@ -19,6 +19,7 @@ class SearchResultCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+
     }
     
 
@@ -26,6 +27,7 @@ class SearchResultCell: UITableViewCell {
     @IBOutlet weak var descrizioneArticolo: UILabel!
     @IBOutlet weak var modello: UILabel!
     @IBOutlet weak var marchio: UILabel!
+    @IBOutlet weak var xView: UIView!
     @IBOutlet weak var giacenza: UILabel!
     
 }
