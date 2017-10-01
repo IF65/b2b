@@ -16,8 +16,10 @@ class SearchViewController: UIViewController {
         
         tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
         
-        let cellNib = UINib(nibName: "SearchResultCell", bundle: nil)
+        var cellNib = UINib(nibName: "SearchResultCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "SearchResultCell")
+        cellNib = UINib(nibName: "LoadingCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "LoadingCell")
         
         searchBar.becomeFirstResponder()
     }
@@ -26,7 +28,7 @@ class SearchViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -61,12 +63,16 @@ class SearchViewController: UIViewController {
 }
 
 var searchResults = ResultArray()
+var isLoading = false
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if !searchBar.text!.isEmpty {
             
             searchBar.resignFirstResponder()
+            
+            isLoading = true
+            tableView.reloadData()
             
             let url = iTunesURL(searchText: searchBar.text!)
             print ("URL: '\(url)'")
@@ -79,7 +85,8 @@ extension SearchViewController: UISearchBarDelegate {
                     print("No results!")
                 }
             }
-            
+ 
+            isLoading = true
             tableView.reloadData()
         }
     }
@@ -91,35 +98,56 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.results.count
+        if isLoading {
+            return 1
+        } else {
+            return searchResults.results.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as! SearchResultCell
-        
-        cell.codiceArticoloGcc.text = searchResults.results[indexPath.row].codice
-        cell.descrizioneArticolo.text = searchResults.results[indexPath.row].descrizione.capitalized
-        cell.modello.text = searchResults.results[indexPath.row].modello
-        cell.marchio.text = searchResults.results[indexPath.row].marchioCopre
-        cell.giacenza.text = String(searchResults.results[indexPath.row].giacenza)
-        cell.prezzo.text = String(searchResults.results[indexPath.row].nettoNetto)
-        
-        cell.codiceArticoloGcc.sizeToFit()
-        cell.xView.layer.borderWidth = 2
-        cell.xView.layer.backgroundColor = UIColor.white.cgColor
-        cell.xView.layer.borderColor = UIColor.black.withAlphaComponent(0.6).cgColor
-        
-        let darkGreen = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
-        if searchResults.results[indexPath.row].giacenza > 0 {
-            cell.giacenza.textColor = darkGreen
+        if isLoading {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
+            
+            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+            spinner.startAnimating()
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as! SearchResultCell
+            
+            cell.codiceArticoloGcc.text = searchResults.results[indexPath.row].codice
+            cell.descrizioneArticolo.text = searchResults.results[indexPath.row].descrizione.capitalized
+            cell.modello.text = searchResults.results[indexPath.row].modello
+            cell.marchio.text = searchResults.results[indexPath.row].marchioCopre
+            cell.giacenza.text = String(searchResults.results[indexPath.row].giacenza)
+            cell.prezzo.text = String(searchResults.results[indexPath.row].nettoNetto)
+            
+            cell.codiceArticoloGcc.sizeToFit()
+            cell.xView.layer.borderWidth = 2
+            cell.xView.layer.backgroundColor = UIColor.white.cgColor
+            cell.xView.layer.borderColor = UIColor.black.withAlphaComponent(0.6).cgColor
+            
+            let darkGreen = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
+            if searchResults.results[indexPath.row].giacenza > 0 {
+                cell.giacenza.textColor = darkGreen
+            }
+            
+            
+            return cell
         }
-        
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if searchResults.results.count == 0 || isLoading {
+            return nil
+        } else {
+            return indexPath
+        }
     }
 }
 

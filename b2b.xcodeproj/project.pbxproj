@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C90D41041F81318C00032B0C /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C90D41031F81318C00032B0C /* LoadingCell.xib */; };
 		C9E3D7CE1F7B79B100B3C0F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E3D7CD1F7B79B100B3C0F3 /* AppDelegate.swift */; };
 		C9E3D7D01F7B79B100B3C0F3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E3D7CF1F7B79B100B3C0F3 /* SearchViewController.swift */; };
 		C9E3D7D31F7B79B100B3C0F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9E3D7D11F7B79B100B3C0F3 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C90D41031F81318C00032B0C /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		C9E3D7CA1F7B79B100B3C0F3 /* b2b.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = b2b.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9E3D7CD1F7B79B100B3C0F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9E3D7CF1F7B79B100B3C0F3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			children = (
 				C9E3D7CD1F7B79B100B3C0F3 /* AppDelegate.swift */,
 				C9E3D7CF1F7B79B100B3C0F3 /* SearchViewController.swift */,
+				C90D41031F81318C00032B0C /* LoadingCell.xib */,
 				C9E3D7E41F7BC15200B3C0F3 /* SearchResultCell.xib */,
 				C9E3D7E61F7BC50500B3C0F3 /* SearchResultCell.swift */,
 				C9E3D7E21F7B9D5500B3C0F3 /* SearchResult.swift */,
@@ -138,6 +141,7 @@
 				C9E3D7DB1F7B79B100B3C0F3 /* LaunchScreen.storyboard in Resources */,
 				C9E3D7D81F7B79B100B3C0F3 /* Assets.xcassets in Resources */,
 				C9E3D7E51F7BC15200B3C0F3 /* SearchResultCell.xib in Resources */,
+				C90D41041F81318C00032B0C /* LoadingCell.xib in Resources */,
 				C9E3D7D31F7B79B100B3C0F3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
