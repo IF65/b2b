@@ -73,8 +73,11 @@ extension SearchViewController: UISearchBarDelegate {
             
             if let data = performStoreRequest(with: url) {
                 searchResults = parse(data: data)!
-                
-                print ("Got results : '\(searchResults.results[0].descrizione)'")
+                if searchResults.resultCount > 0 {
+                    print ("Got results : '\(searchResults.results[0].descrizione)'")
+                } else {
+                    print("No results!")
+                }
             }
             
             tableView.reloadData()
@@ -95,10 +98,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as! SearchResultCell
         
         cell.codiceArticoloGcc.text = searchResults.results[indexPath.row].codice
-        cell.descrizioneArticolo.text = searchResults.results[indexPath.row].descrizione
+        cell.descrizioneArticolo.text = searchResults.results[indexPath.row].descrizione.capitalized
         cell.modello.text = searchResults.results[indexPath.row].modello
         cell.marchio.text = searchResults.results[indexPath.row].marchioCopre
         cell.giacenza.text = String(searchResults.results[indexPath.row].giacenza)
+        cell.prezzo.text = String(searchResults.results[indexPath.row].nettoNetto)
         
         cell.codiceArticoloGcc.sizeToFit()
         cell.xView.layer.borderWidth = 2

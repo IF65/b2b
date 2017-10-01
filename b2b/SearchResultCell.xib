@@ -34,17 +34,23 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FsY-gU-BeW">
-                                <rect key="frame" x="0.0" y="39.5" width="123.5" height="19.5"/>
+                                <rect key="frame" x="0.0" y="39.5" width="175.5" height="19.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="modello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgF-D0-ezG">
-                                        <rect key="frame" x="0.0" y="0.0" width="51.5" height="19.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="48" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="marchio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1O-0E-3Rg">
-                                        <rect key="frame" x="71.5" y="0.0" width="52" height="19.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="marchio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1O-0E-3Rg">
+                                        <rect key="frame" x="68" y="0.0" width="49" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="prezzo" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSb-V6-YAJ">
+                                        <rect key="frame" x="137" y="0.0" width="38.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -88,6 +94,7 @@
                 <outlet property="giacenza" destination="qiR-LD-9sZ" id="Fye-A3-e9y"/>
                 <outlet property="marchio" destination="r1O-0E-3Rg" id="yct-gB-z8B"/>
                 <outlet property="modello" destination="IgF-D0-ezG" id="g4C-9m-xsg"/>
+                <outlet property="prezzo" destination="MSb-V6-YAJ" id="155-Di-hen"/>
                 <outlet property="xView" destination="a96-gb-hwd" id="eJw-48-bpN"/>
             </connections>
             <point key="canvasLocation" x="-177" y="-253"/>

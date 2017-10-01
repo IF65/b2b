@@ -30,4 +30,5 @@ class SearchResultCell: UITableViewCell {
     @IBOutlet weak var xView: UIView!
     @IBOutlet weak var giacenza: UILabel!
     
+    @IBOutlet weak var prezzo: UILabel!
 }
