@@ -29,6 +29,9 @@ class SearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    var searchResults = ResultArray()
+    var isLoading = false
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -62,9 +65,6 @@ class SearchViewController: UIViewController {
     }
 }
 
-var searchResults = ResultArray()
-var isLoading = false
-
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if !searchBar.text!.isEmpty {
@@ -74,20 +74,24 @@ extension SearchViewController: UISearchBarDelegate {
             isLoading = true
             tableView.reloadData()
             
-            let url = iTunesURL(searchText: searchBar.text!)
-            print ("URL: '\(url)'")
+            searchResults.results = []
             
-            if let data = performStoreRequest(with: url) {
-                searchResults = parse(data: data)!
-                if searchResults.resultCount > 0 {
-                    print ("Got results : '\(searchResults.results[0].descrizione)'")
-                } else {
-                    print("No results!")
+            let url = self.iTunesURL(searchText: searchBar.text!)
+            
+            let queue = DispatchQueue.global()
+            queue.async {
+                
+                print ("URL: '\(url)'")
+                
+                if let data = self.performStoreRequest(with: url) {
+                    self.searchResults = self.parse(data: data)!
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                        self.tableView.reloadData()
+                    }
+                    return
                 }
             }
- 
-            isLoading = true
-            tableView.reloadData()
         }
     }
     
